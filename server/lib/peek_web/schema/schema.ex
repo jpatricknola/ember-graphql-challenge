@@ -23,20 +23,31 @@ defmodule PeekWeb.Schema.Schema do
   # Event Object
   #
   object :event do
-    field :id, non_null(:id)
-    field :start, non_null(:naive_datetime)
-    field :duration, non_null(:integer)
-    field :title, non_null(:string)
+    field(:id, non_null(:id))
+    field(:start, non_null(:naive_datetime))
+    field(:duration, non_null(:integer))
+    field(:title, non_null(:string))
 
-    field :bookings, list_of(non_null(:booking)), resolve: &BookingResolver.get_bookings/3
+    field(:bookings, list_of(non_null(:booking)), resolve: &BookingResolver.get_bookings/3)
   end
 
   #
   # Booking Object
   #
   object :booking do
-    field :first_name, non_null(:string)
-    field :last_name, non_null(:string)
+    field(:event_id, non_null(:string))
+    field(:first_name, non_null(:string))
+    field(:last_name, non_null(:string))
   end
 
+  mutation do
+    @desc "Create a new booking"
+    field :create_booking, :booking do
+      arg(:event_id, non_null(:string))
+      arg(:first_name, non_null(:string))
+      arg(:last_name, non_null(:string))
+
+      resolve(&BookingResolver.create_booking/3)
+    end
+  end
 end

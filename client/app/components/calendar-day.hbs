@@ -1,0 +1,7 @@
+<div class="calendar-day">
+    <h2>{{@entry.day}}</h2>
+
+    {{#each @entry.items as |item|}}
+    <CalendarEntry @item={{item}}></CalendarEntry>
+    {{/each}}
+</div>

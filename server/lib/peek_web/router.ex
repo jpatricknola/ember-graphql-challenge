@@ -3,20 +3,23 @@ defmodule PeekWeb.Router do
 
   pipeline :api do
     # Defining Cors origin
-    plug CORSPlug, origin: "http://localhost:4200"
-    plug :accepts, ["json"]
+    plug(CORSPlug, origin: "http://localhost:4200")
+    plug(:accepts, ["json"])
   end
 
   scope "/" do
-    pipe_through :api
+    pipe_through(:api)
 
     # Api
-    forward "/api", Absinthe.Plug, schema: PeekWeb.Schema.Schema
+    forward("/api", Absinthe.Plug, schema: PeekWeb.Schema.Schema)
+
+    # post("/", Absinthe.Plug, schema: PeekWeb.Schema.Schema)
 
     # Graphiql
-    forward "/graphiql", Absinthe.Plug.GraphiQL,
+    forward("/graphiql", Absinthe.Plug.GraphiQL,
       schema: PeekWeb.Schema.Schema,
       interface: :simple
+    )
   end
 
   # Enables LiveDashboard only for development
@@ -30,8 +33,8 @@ defmodule PeekWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/" do
-      pipe_through [:fetch_session, :protect_from_forgery]
-      live_dashboard "/dashboard", metrics: PeekWeb.Telemetry
+      pipe_through([:fetch_session, :protect_from_forgery])
+      live_dashboard("/dashboard", metrics: PeekWeb.Telemetry)
     end
   end
 end

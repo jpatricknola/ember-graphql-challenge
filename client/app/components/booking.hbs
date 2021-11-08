@@ -1,0 +1,20 @@
+<div class="booking">
+    <div class="jumbo center">
+        <h1>Great Choice!</h1>
+        <p>Book your reservation now</p>
+    </div>
+
+    <div class="booking-container center">
+        <div class="booking-input">
+            <label for="First Name">First Name:</label>
+            <Input class="booking-input" id="first-name" @type="text" @value={{this.firstName}} />
+        </div>
+        <div class="booking-input">
+            <label for="Last Name">Last Name:</label>
+            <Input class="booking-input" id="last-name" @type="text" @value={{this.lastName}} />
+        </div>
+        <div class="booking-button">
+            <button type="button" class="button" {{action "bookNow" @eventId }}> Make Reservation </button>
+        </div>
+    </div>
+</div>
