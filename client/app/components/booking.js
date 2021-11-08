@@ -10,7 +10,6 @@ export default class BookingComponent extends Component {
     @service
     router
 
-
     @action
     async bookNow(eventId) {
         try {
@@ -23,6 +22,4 @@ export default class BookingComponent extends Component {
             alert("Uh oh something went wrong")
         }
     }
-
-
 }

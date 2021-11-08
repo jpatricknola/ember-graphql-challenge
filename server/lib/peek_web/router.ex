@@ -13,8 +13,6 @@ defmodule PeekWeb.Router do
     # Api
     forward("/api", Absinthe.Plug, schema: PeekWeb.Schema.Schema)
 
-    # post("/", Absinthe.Plug, schema: PeekWeb.Schema.Schema)
-
     # Graphiql
     forward("/graphiql", Absinthe.Plug.GraphiQL,
       schema: PeekWeb.Schema.Schema,
